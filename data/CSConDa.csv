@@ -1,0 +1,14 @@
+qid,question,answer,context,source_file
+0,"Cho em hỏi về chương trình đào tạo và chỉ tiêu tuyển sinh của trường năm nay như thế nào ạ?","Trường có 35 ngành đào tạo với tổng chỉ tiêu 4.800 sinh viên, bao gồm các chương trình: Chương trình Chuẩn, Chương trình Chất lượng cao, Chương trình Quốc tế, và Chương trình Liên kết","THÔNG TIN TUYỂN SINH ĐẠI HỌC
+TRƯỜNG ĐẠI HỌC XYZ NĂM 2025
+35 NGÀNH - TỔNG CHỈ TIÊU: 4.800 SINH VIÊN
+
+Các chương trình đào tạo:
+- Chương trình Chuẩn: đào tạo bằng tiếng Việt, học phí 12 triệu đồng/HK
+- Chương trình Chất lượng cao: học phí 25 triệu đồng/HK  
+- Chương trình Quốc tế: giảng dạy bằng tiếng Anh
+- Chương trình Liên kết: hợp tác với các trường nước ngoài",/path/to/sample/document1.txt
+1,"Em có điểm IELTS 6.0, muốn học chương trình quốc tế thì yêu cầu đầu vào như thế nào ạ?","Yêu cầu tiếng Anh đầu vào: **IELTS ≥ 5.5** hoặc TOEFL iBT ≥ 70 hoặc TOEIC ≥ 650. Chương trình giảng dạy hoàn toàn bằng tiếng Anh, học phí khoảng **35 triệu đồng/HK**, thời gian đào tạo 4 năm","Chương trình Quốc tế
+Đào tạo 20 ngành chuyên ngành, giảng dạy hoàn toàn bằng tiếng Anh, học phí khoảng 35 triệu đồng/HK, thời gian đào tạo 4 năm. Yêu cầu tiếng Anh đầu vào: IELTS ≥ 5.5 hoặc TOEFL iBT ≥ 70 hoặc TOEIC ≥ 650. Sinh viên sẽ có cơ hội trao đổi với các trường đối tác quốc tế.",/path/to/sample/document2.txt
+
+Note: All data shown above are anonymized examples to ensure privacy protection. We will release the full dataset upon paper acceptance.

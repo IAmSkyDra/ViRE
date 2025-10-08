@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vi-retrieval-eval"
+version = "0.2.0"
+description = "Evaluate TF-IDF, BM25, Dense (OpenAI/Gemini/SBERT + FAISS), and Hybrid fusion on Vietnamese QA datasets"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+  "numpy>=1.23",
+  "pandas>=1.5",
+  "scikit-learn>=1.2",
+  "rank-bm25>=0.2.2",
+  "faiss-cpu>=1.7.4",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+all = [
+  "underthesea>=6.8.0",
+  "openai>=1.0.0",
+  "google-generativeai>=0.8.0",
+  "sentence-transformers>=3.0.0",
+  "torch>=2.2.0",
+]
+
+[project.scripts]
+vi-retrieval-eval = "vi_retrieval_eval.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

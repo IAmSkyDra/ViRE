@@ -1,0 +1,2 @@
+data/ViNewsQA.csv filter=lfs diff=lfs merge=lfs -text
+data/raw/ZaloLegalQA/corpus.jsonl filter=lfs diff=lfs merge=lfs -text

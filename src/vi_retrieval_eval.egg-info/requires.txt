@@ -1,0 +1,13 @@
+numpy>=1.23
+pandas>=1.5
+scikit-learn>=1.2
+rank-bm25>=0.2.2
+faiss-cpu>=1.7.4
+tqdm>=4.66
+
+[all]
+underthesea>=6.8.0
+openai>=1.0.0
+google-generativeai>=0.8.0
+sentence-transformers>=3.0.0
+torch>=2.2.0

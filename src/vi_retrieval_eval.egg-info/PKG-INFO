@@ -1,0 +1,150 @@
+Metadata-Version: 2.4
+Name: vi-retrieval-eval
+Version: 0.2.0
+Summary: Evaluate TF-IDF, BM25, Dense (OpenAI/Gemini/SBERT + FAISS), and Hybrid fusion on Vietnamese QA datasets
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.23
+Requires-Dist: pandas>=1.5
+Requires-Dist: scikit-learn>=1.2
+Requires-Dist: rank-bm25>=0.2.2
+Requires-Dist: faiss-cpu>=1.7.4
+Requires-Dist: tqdm>=4.66
+Provides-Extra: all
+Requires-Dist: underthesea>=6.8.0; extra == "all"
+Requires-Dist: openai>=1.0.0; extra == "all"
+Requires-Dist: google-generativeai>=0.8.0; extra == "all"
+Requires-Dist: sentence-transformers>=3.0.0; extra == "all"
+Requires-Dist: torch>=2.2.0; extra == "all"
+
+# VIRE: Vietnamese Information Retrieval Evaluation Toolkit
+
+**VIRE** (Vietnamese Information Retrieval Evaluation Toolkit) is an open-source framework for benchmarking **lexical, dense, and hybrid retrieval models** on Vietnamese datasets.  
+It is designed to support **reproducible experiments**, standardized evaluation, and fair comparisons across retrieval paradigms in the Vietnamese language.
+
+---
+
+## Motivation
+
+Information Retrieval (IR) is a foundational component in modern Question Answering (QA) and Retrieval-Augmented Generation (RAG) systems.  
+While Vietnamese IR has received growing attention, there has been a lack of **lightweight, extensible, and evaluation-oriented** toolkits specifically tailored for Vietnamese.  
+
+VIRE addresses this gap by providing:
+- A **unified interface** for lexical and dense retrieval methods  
+- **Hybrid retrieval** with configurable fusion strategies  
+- A comprehensive set of **evaluation metrics** consistent with international IR benchmarks  
+- Support for **multi-gold relevance judgments** (via qrels)
+
+---
+
+## Features
+
+- **Retrieval methods**
+  - Lexical: TF-IDF, BM25
+  - Dense: OpenAI, Gemini, Sentence-Transformers
+  - Hybrid: dense + lexical (with alpha or Reciprocal Rank Fusion)
+
+- **Evaluation metrics**
+  - Precision@k, Recall@k, HitRate@k
+  - Mean Reciprocal Rank (MRR@k)
+  - Mean Average Precision (MAP@k)
+  - Normalized Discounted Cumulative Gain (nDCG@k)
+  - R-Precision
+  - First relevant rank statistics (mean, median, found rate)
+
+- **Reproducibility**
+  - Embedding caching and FAISS indexing
+  - Deterministic ranking (stable mergesort tie-breaking)
+  - Configurable cutoffs and evaluation granularity
+
+---
+
+## Installation
+
+```bash
+git clone https://github.com/IAmSkyDra/vire.git
+cd vire
+pip install -e .
+```
+
+Optional:
+- `faiss-cpu` for efficient dense retrieval
+- `underthesea` for Vietnamese word segmentation
+
+---
+
+## Usage
+
+The toolkit provides a command-line interface:
+
+```bash
+vi-retrieval-eval --help
+```
+
+### Example: Lexical baseline (BM25)
+
+```bash
+vi-retrieval-eval   --csv data/demo.csv   --method bm25   --output-dir outputs
+```
+
+### Example: Dense (OpenAI embeddings)
+
+```bash
+vi-retrieval-eval   --csv data/demo.csv   --method dense   --dense-backend openai   --embed-model text-embedding-3-large
+```
+
+### Example: Hybrid fusion (Dense + BM25)
+
+```bash
+vi-retrieval-eval   --csv data/demo.csv   --method dense+bm25   --fusion alpha   --alpha 0.7
+```
+
+---
+
+## Input formats
+
+- **Main CSV (mandatory):**  
+  - `question`  
+  - `context`  
+  Optionally: `qid`, `doc_id`
+
+- **Qrels CSV (optional, for multi-gold evaluation):**  
+  - `qid`, `doc_id`, `rel`
+
+---
+
+## Output formats
+
+All results are stored in structured directories:
+
+```
+<output_dir>/<dataset>/<method>/
+  ├── metrics.json       # averaged evaluation metrics
+  ├── ranks.json         # ranked document indices per query
+  ├── index.faiss        # FAISS index (if dense)
+  ├── doc_embeddings.npy
+  └── query_embeddings.npy
+```
+
+---
+
+## Research Applications
+
+- **Benchmarking:** VIRE enables standardized comparison across retrieval methods for Vietnamese QA.  
+- **RAG evaluation:** Scores can be integrated into RAG pipelines to analyze retrieval bottlenecks.  
+- **Ablation studies:** Provides modular backends to isolate the effects of embeddings, tokenization, or fusion.  
+
+---
+
+## Citation
+
+If you use VIRE in academic work, please cite:
+
+```
+@software{vire2025,
+  title = {VIRE: Vietnamese Information Retrieval Evaluation Toolkit},
+  author = {Long S. T. Nguyen},
+  year = {2025},
+  url = {https://github.com/IAmSkyDra/vire}
+}
+```
